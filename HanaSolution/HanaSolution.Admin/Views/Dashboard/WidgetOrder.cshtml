@@ -1,0 +1,176 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.OrderView>
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Đơn hàng đang đợi</h2>
+
+                </header>
+                <div class="content-body">
+                    <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Mã</th>
+                                <th>Ngày</th>
+                                <th>Hình thức TT</th>
+                                <th>Trạng thái TT</th>
+                                <th>Trạng thái</th>
+                                <th>Người mua</th>
+                                <th>Tổng tiền</th>
+                                <th>Giảm giá</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null && Model.Count() > 0 && Model.Where(x => x.StatusOrder == 0) != null)
+                            {
+                                foreach (var item in Model.Where(x => x.StatusOrder == 0))
+                                {
+
+
+                                    <tr>
+                                        <td>@item.Code</td>
+                                        <td>@String.Format("{0:dd/MM/yyyy HH:mm}", item.Date)</td>
+                                        <td>
+                                            @if (item.TypePayment == 0)
+                                            {
+
+                                                <p>Thanh toán Online quốc tế</p>
+                                            }
+                                            @if (item.TypePayment == 1)
+                                            {
+                                                <p>Thanh toán Online</p>
+                                            }
+                                            @if (item.TypePayment == 2)
+                                            {
+                                                <p>Thanh toán khi nhận hàng</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.StatusPayment == 1)
+                                            {
+                                                <p class="label-success">Đã thanh toán</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="label-danger">Chưa thanh toán</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            <p class="label-warning">Đang đợi</p>
+                                        </td>
+                                        <td>
+                                            @item.MemberName
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Total)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Reduce)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Amount)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Đơn hàng đang thực hiện</h2>
+
+                </header>
+                <div class="content-body">
+                    <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Mã</th>
+                                <th>Ngày</th>
+                                <th>Hình thức TT</th>
+                                <th>Trạng thái TT</th>
+                                <th>Trạng thái</th>
+                                <th>Người mua</th>
+                                <th>Tổng tiền</th>
+                                <th>Giảm giá</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null && Model.Count() > 0 && Model.Where(x => x.StatusOrder > 0 && x.StatusOrder != 4 && x.StatusOrder != 5) != null)
+                            {
+                                foreach (var item in Model.Where(x => x.StatusOrder > 0 && x.StatusOrder != 4 && x.StatusOrder != 5))
+                                {
+
+
+                                    <tr>
+                                        <td>@item.Code</td>
+                                        <td>@String.Format("{0:dd/MM/yyyy HH:mm}", item.Date)</td>
+                                        <td>
+                                            @if (item.TypePayment == 0)
+                                            {
+                                                <p>Thanh toán khi nhận hàng</p>
+                                            }
+                                            @if (item.TypePayment == 1)
+                                            {
+                                                <p>Thanh toán Online</p>
+                                            }
+                                            @if (item.TypePayment == 2)
+                                            {
+                                                <p>Thanh toán Online quốc tế</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.StatusPayment == 1)
+                                            {
+                                                <p class="label-success">Đã thanh toán</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="label-danger">Chưa thanh toán</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            <p class="label-info">Đang thực hiện</p>
+                                        </td>
+                                        <td>
+                                            @item.MemberName
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Total)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Reduce)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:0,00}", item.Amount)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+

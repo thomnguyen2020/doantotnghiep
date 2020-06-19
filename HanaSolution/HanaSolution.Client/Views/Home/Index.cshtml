@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <div class="page-content-wrapper container">
+        <!-- Hero Slides-->
+        @Html.Action("Banner", "Home")
+
+        <!-- Product Catagories-->
+        @Html.Action("Category", "Home")
+        @Html.Action("ProductNews", "Home")
+        <!-- Flash Sale Slide-->
+        
+        <!-- Top Products-->
+        @Html.Action("Product", "Home")
+        <!-- Cool Facts Area-->
+        <div class="cta-area">
+            <div class="container">
+                <div class="cta-text p-4 p-lg-5" style="background-image: url(/Content/img/bg-img/24.jpg)">
+                    <h4>HANA SHOP Giảm Giá 20%</h4>
+                    <p>Xem nhanh danh sách sản phẩm của &amp; <br>Hana Shop.</p>
+                    <a class="btn btn-danger" href="/san-pham.html">Shop ngay</a>
+                </div>
+            </div>
+        </div>
+        <!-- Weekly Best Sellers-->
+        @Html.Action("Promotion", "Home")
+        @Html.Action("News", "Home")
+    </div>

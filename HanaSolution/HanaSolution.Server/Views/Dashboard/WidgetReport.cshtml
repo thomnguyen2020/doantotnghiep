@@ -1,0 +1,26 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.OrderDetailView>
+    <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Số lượng</th>
+                <th>Tổng doanh thu</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ProductName</td>
+                        <td style="text-align:center"><img src="@item.ProductAvatar" style="width:150px;height:auto" /></td>
+                        <td>@item.Qty</td>
+                        <td>@String.Format("{0:0,00}", item.Total)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>

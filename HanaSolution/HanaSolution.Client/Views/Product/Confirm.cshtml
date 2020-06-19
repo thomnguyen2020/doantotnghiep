@@ -1,0 +1,30 @@
+﻿@model HanaSolution.Data.ViewModels.OrderView
+@{
+    ViewBag.Title = "Confirm_Global";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="order-success-wrapper container">
+        <div class="list-section">
+            <div class="heading-page">
+                Xác nhận thanh toán
+            </div>
+            <div class="wrap-list-rc" id="paid_form">
+                <i class="lni-check-mark-circle lni-flashing-effect"></i>
+                @if (ViewBag.StatusPayment != null)
+                {
+                    if ((bool)ViewBag.StatusPayment)
+                    {
+                        <p>Thanh toán thành công. Đơn hàng của bạn sẽ được xử lý nhanh nhất</p>
+                    }
+                    else
+                    {
+                        <p>Thanh toán thất bại. Vui lòng kiểm tra thông tin thanh toán, hoặc liên hệ hỗ trợ nếu sự cố nhiều lần</p>
+                    }
+                }
+            </div>
+
+
+        </div>
+    </div>
+

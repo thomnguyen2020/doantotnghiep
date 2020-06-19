@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Phan Hưng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link rel="shortcut icon" href="~/Content/images/favicon.png" type="image/x-icon" />    <!-- Favicon -->
+    <link rel="apple-touch-icon-precomposed" href="~/Content/images/apple-touch-icon-57-precomposed.png">	<!-- For iPhone -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/images/apple-touch-icon-114-precomposed.png">    <!-- For iPhone 4 Retina display -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/images/apple-touch-icon-72-precomposed.png">    <!-- For iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/images/apple-touch-icon-144-precomposed.png">    <!-- For iPad Retina display -->
+    @Styles.Render("~/Styles/css")
+    @Scripts.Render("~/Styles/js")
+</head>
+<body>
+   
+    <div class='page-topbar '>
+        <div class='logo-area'>
+
+        </div>
+        <div class='quick-area'>
+            <div class='pull-left'>
+                <ul class="info-menu left-links list-inline list-unstyled">
+                    <li class="sidebar-toggle-wrap">
+                        <a href="#" data-toggle="sidebar" class="sidebar_toggle">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class='pull-right'>
+                <ul class="info-menu right-links list-inline list-unstyled">
+                    @Html.Action("WidgetLogin","System")
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="page-container row-fluid">
+
+        <!-- SIDEBAR - START -->
+        <div class="page-sidebar ">
+
+            <!-- MAIN MENU - START -->
+            <div class="page-sidebar-wrapper" id="main-menu-wrapper">
+
+                <!-- USER INFO - START -->
+                
+                <!-- USER INFO - END -->
+
+
+
+                <ul class='wraplist'>
+
+
+                    <li class="">
+                        <a href="/">
+                            <i class="fa fa-dashboard"></i>
+                            <span class="title">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a href="/Product/List">
+                            <i class="fa fa-cubes"></i>
+                            <span class="title">Sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/Product/CategoryList">
+                            <i class="fa fa-book"></i>
+                            <span class="title">DM Sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/Product/FeedBack">
+                            <i class="fa fa-comments"></i>
+                            <span class="title">Phản hồi</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/Promotion/List">
+                            <i class="fa fa-gift"></i>
+                            <span class="title">Khuyến mãi</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/System/Profiles">
+                            <i class="fa fa-user"></i>
+                            <span class="title">Tài khoản</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/Order/List">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="title">Đơn hàng</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- MAIN MENU - END -->
+
+
+
+            
+
+
+
+        </div>
+        <!--  SIDEBAR - END -->
+        <!-- START CONTENT -->
+        <!-- END CONTENT -->
+        @RenderBody()
+    </div>
+    
+</body>
+</html>

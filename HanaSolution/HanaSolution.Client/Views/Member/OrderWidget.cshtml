@@ -1,0 +1,64 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.OrderView>
+
+<div class="wrap-list-rc">
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="lrc-item">
+                <a href="#">
+                    <div class="lrc-content">
+                        <div class="lrc-img">
+                            <b>@item.Code</b>
+                        </div>
+                        <div class="lrc-desc">
+                            <div class="lrc-title">@String.Format("{0:dd/MM/yyyy hh:mm}", item.Date)</div>
+                            <div class="lrc-text" style=" display: flex; justify-content: start;">
+                                @if (item.StatusPayment == 0)
+                                {
+                                    <p class="label-danger">Chưa thanh toán</p>
+                                }
+                                else
+                                {
+                                    <p class="label-success">Đã thanh toán</p>
+                                }
+                                &nbsp;-&nbsp;
+                                @if (item.StatusOrder == 0)
+                                {
+                                    <p class="label-danger">Đang đợi xử lý</p>
+                                }
+                                @if (item.StatusOrder == 1)
+                                {
+                                    <p class="label-danger">Đang thực hiện</p>
+                                }
+                                @if (item.StatusOrder == 2)
+                                {
+                                    <p class="label-danger">Đang giao</p>
+                                }
+                                @if (item.StatusOrder == 3)
+                                {
+                                    <p class="label-danger">Đã giao</p>
+                                }
+                                @if (item.StatusOrder == 4)
+                                {
+                                    <p class="label-danger">Bị nhà cung cấp hủy</p>
+                                }
+                                @if (item.StatusOrder == 5)
+                                {
+                                    <p class="label-danger">Người dùng hủy</p>
+                                }
+                            </div>
+                            <div class="lrc-button">
+
+                                <div class="lrcb-right">
+
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    }
+</div>

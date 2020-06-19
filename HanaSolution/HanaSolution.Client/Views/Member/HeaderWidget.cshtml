@@ -1,0 +1,47 @@
+﻿@model HanaSolution.Data.ViewModels.MemberView
+<div class="sdprofile">
+    @if (Model != null && Model.ID != 0)
+    {
+    <div class="sidenav-profile">
+
+        <div class="user-profile"><img src="/Content/img/bg-img/9.jpg" alt=""></div>
+        <div class="user-info">
+
+            <a href="/thong-tin-tai-khoan.html">
+                <h6 class="user-name mb-0">@Model.Name</h6>
+            </a>
+            <p class="available-balance">@Model.Level</p>
+            <p class="available-balance"><a href="" onclick="logOut()"><i>Đăng xuất</i></a></p>
+        </div>
+
+    </div>
+
+    }
+    else
+    {
+        <div class="sidenav-profile">
+            <div class="user-info">
+                <p class="available-balance"><a href="/dang-nhap.html"><i>Đăng nhập</i></a></p>
+                <p class="available-balance"><a href="/dang-ky.html"><i>Đăng ký</i></a></p>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    function logOut() {
+        $.ajax({
+            url: "/Member/Logout",
+            type: "POST",
+            traditional: true,
+            datatype: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                //alert(result);
+                location.href = "/";
+            },
+            error: function () {
+                return false;
+            }
+        });
+    }
+</script>

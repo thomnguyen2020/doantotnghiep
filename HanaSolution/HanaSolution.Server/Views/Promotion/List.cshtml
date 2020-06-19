@@ -1,0 +1,161 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.PromotionView>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content" class=" ">
+    <section class="wrapper main-wrapper" style=''>
+
+        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+            <div class="page-title">
+
+                <div class="pull-left">
+                    <h1 class="title">Khuyến mãi</h1>
+                </div>
+
+                <div class="pull-right hidden-xs">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/"><i class="fa fa-home"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/Promotion/List">Khuyến mãi</a>
+                        </li>
+                        <li class="active">
+                            <strong>Khuyến mãi</strong>
+                        </li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-lg-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Danh sách</h2>
+                    <div class="actions panel_actions pull-right">
+                        <i class="box_toggle fa fa-chevron-down"></i>
+                        <a href=""><i class="box_setting fa fa-refresh"></i></a>
+                        <a href="/Promotion/Add"><i class="box_setting fa fa-plus"></i></a>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tiêu đề</th>
+                                        <th>Mã</th>
+                                        <th>Mô tả</th>
+                                        <th>Ảnh</th>
+                                        <th>Thời gian</th>
+                                        <th>Loại</th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @{ string pName = "";}
+                                    @if (Model != null && Model.Count() > 0)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+
+                                            if (item.Type.Contains("1"))
+                                            {
+                                                pName += "Giới hạn người tham gia <br>";
+                                            }
+                                            if (item.Type.Contains("2"))
+                                            {
+                                                pName += "Giới hạn độ tuổi <br>";
+                                            }
+                                            if (item.Type.Contains("3"))
+                                            {
+                                                pName += "Giới hạn giới tính <br>";
+                                            }
+                                            if (item.Type.Contains("4"))
+                                            {
+                                                pName += "Giới hạn cấp độ <br>";
+                                            }
+                                            if (item.Type.Contains("5"))
+                                            {
+                                                pName += "Giới hạn điểm thành viên <br>";
+                                            }
+                                            <tr>
+                                                <td>@item.ID</td>
+                                                <td>@item.Title</td>
+                                                <td>@item.Code</td>
+                                                <td>@item.Desc</td>
+                                                <td style="text-align:center"><img src="@item.Avatar" style="width:150px;height:auto" /></td>
+                                                <td>@String.Format("{0:dd/MM/yyyy hh:mm}", item.StartDate) - @String.Format("{0:dd/MM/yyyy hh:mm}", item.EndDate)</td>
+                                                <td>@Html.Raw(pName)</td>
+                                                <td class="action-td">
+                                                    <div class="row">
+                                                        <a href="/Promotion/Detail/@item.ID" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                                        <a id="r_@item.ID" onclick="deletes('/Promotion/Delete/@item.ID','@item.ID','@item.Title')" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                                    </div>
+                                                    <div class="row">
+                                                        <a class="btn btn-success" href="/Promotion/Edit/@item.ID"><i class="fa fa-edit"></i></a>
+                                                        <a class="btn btn-warning" href="/Promotion/FeedBack/@item.ID"><i class="fa fa-comments"></i></a>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                            <!-- ********************************************** -->
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</section>
+
+<script type="text/javascript">
+
+    function deletes(action, id, name) {
+        $.confirm({
+            title: 'Thông báo!',
+            content: 'Xác nhận để xóa dữ liệu này - [' + name + ']',
+            buttons: {
+                ok: function () {
+                    $.ajax({
+                        method: "GET",
+                        url: action,
+                    }).done(function (result) {
+                        if (result != '') {
+                            $.alert({
+                                title: 'Thông báo!',
+                                content: 'Xảy ra lỗi khi xóa dữ liệu:' + result,
+                            });
+                        }
+                        else {
+                            var i = jQuery('#r_' + id).closest('tr');
+                            i.remove();
+                            $.alert({
+                                title: 'Thông báo!',
+                                content: 'Đã xóa dữ liệu thanh công!',
+                            });
+                        }
+                    })
+                },
+                cancel: function () {
+                    return;
+                }
+            }
+        });
+    }
+</script>

@@ -1,0 +1,158 @@
+﻿@model HanaSolution.Data.ViewModels.ProductCategoryAction
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content" class=" ">
+    <section class="wrapper main-wrapper" style=''>
+
+        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+            <div class="page-title">
+
+                <div class="pull-left">
+                    <h1 class="title">Thêm mới danh mục sản phẩm</h1>
+                </div>
+
+                <div class="pull-right hidden-xs">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/"><i class="fa fa-home"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/ProductCategory/List">Danh mục</a>
+                        </li>
+                        <li class="active">
+                            <strong>Chỉnh sửa</strong>
+                        </li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Thông tin</h2>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+
+                        @using (Html.BeginForm("Edit", "ProductCategory", FormMethod.Post))
+                        {
+                            <div class="panel-group primary" id="accordion-2" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion-2" href="#collapseOne-2" aria-expanded="true" aria-controls="collapseOne-2">
+                                                <i class="fa fa-check"></i> Thông tin cơ bản
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne-2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <div class="col-lg-12 col-md-8 col-sm-9 col-xs-12">
+
+
+
+
+                                                <div class="form-group">
+                                                    <label class="form-label" for="field-1">Tên</label>
+                                                    <span class="desc"></span>
+                                                    <div class="controls">
+                                                        @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "Name" })
+                                                        @Html.ValidationMessageFor(model => model.Title)
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label" for="field-1">Mô tả</label>
+                                                    <span class="desc"></span>
+                                                    <div class="controls">
+                                                        @Html.TextAreaFor(model => model.Desc, new { @class = "form-control", @placeholder = "Desc" })
+                                                        @Html.ValidationMessageFor(model => model.Desc)
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label" for="field-1">Rank</label>
+                                                    <span class="desc">Thông số để sắp xếp thứ tự hiển thị</span>
+                                                    <div class="controls">
+                                                        @Html.TextAreaFor(model => model.Rank, new { @class = "form-control", @placeholder = "Rank", @type = "number" })
+                                                        @Html.ValidationMessageFor(model => model.Rank)
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label" for="field-5">Trạng thái</label>
+                                                    <span class="desc"></span>
+                                                    <select name="Status" id="Status" class="form-control">
+                                                        <option selected value="true">Hiện</option>
+                                                        <option value="false">Ẩn</option>
+                                                    </select>
+                                                </div>
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion-2" href="#collapseTwo-2" aria-expanded="false" aria-controls="collapseTwo-2">
+                                                <i class="fa fa-check"></i> Nội dung chính
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label class="form-label" for="field-1">Hình ảnh</label>
+                                                <span class="desc"></span>
+                                                <div class="controls">
+                                                    <img src="~/Content/images/no-image.png" id="reviewImg" style="width:150px;height:auto;cursor:pointer" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    @Html.TextBoxFor(model => model.Avatar, new { @class = "form-control", @placeholder = "..." })
+                                                </div>
+                                                <script type="text/javascript">
+                                                    $('#reviewImg').click(function () {
+                                                        var finder = new CKFinder();
+                                                        finder.selectActionFunction = function (fileUrl) {
+                                                            $('#Avatar').val(fileUrl);
+                                                            $('#reviewImg').attr("src", fileUrl);
+                                                        };
+                                                        finder.popup();
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-bottom-30">
+                                <div class="text-left">
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                    <button type="button" class="btn">Hủy</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+                </div>
+            </section>
+
+        </div>
+
+
+
+    </section>
+</section>
+

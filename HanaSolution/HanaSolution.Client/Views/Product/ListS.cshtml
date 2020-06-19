@@ -1,0 +1,46 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.ProductViewList>
+@using HanaSolution.Helper.Core
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="page-content-wrapper container">
+        <div class="top-products-area clearfix">
+            <div class="container">
+                <div class="section-heading d-flex align-items-center justify-content-between">
+                </div>
+                <div class="row">
+                    <!-- Single Top Product Card-->
+                    @if (Model != null && Model.Count() > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            var url = $"/san-pham/{item.Title.ToUrlFormat(true, true)}-{item.ID}.html";
+                            <div class="col-6 col-sm-4 col-lg-3">
+                                <div class="card top-product-card mb-3">
+                                    <div class="card-body">
+                                        <span class="badge badge-success">Hot</span>
+                                        <a class="wishlist-btn" href="@url"><i class="lni-heart-filled"></i></a>
+                                        <a class="product-thumbnail d-block" href="@url">
+                                            <img class="mb-2" src="@item.Avatar" alt="">
+                                        </a>
+                                        <a class="product-title d-block" href="@url">@item.Title</a>
+                                        <p class="sale-price">@String.Format("{0:0,00}", item.Price)đ<span>@String.Format("{0:0,00}", (item.Price + 50000))đ</span></p>
+                                        <div class="product-rating">
+                                            <i class="lni-star-filled"></i><i class="lni-star-filled"></i><i class="lni-star-filled"></i><i class="lni-star-filled"></i>
+                                            <i class="lni-star-filled"></i>
+                                        </div>
+                                        <a class="btn btn-success btn-sm add2cart-notify" onclick="addShopingCart(@item.ID,'@item.Title',@item.Price,'@item.Avatar')" href="#">
+                                            <i class="lni-plus"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+

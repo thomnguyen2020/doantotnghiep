@@ -1,0 +1,200 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.MemberView>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content" class=" ">
+    <section class="wrapper main-wrapper" style=''>
+
+        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+            <div class="page-title">
+
+                <div class="pull-left">
+                    <h1 class="title">Thành viên</h1>
+                </div>
+
+                <div class="pull-right hidden-xs">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/"><i class="fa fa-home"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/Member/List">Thành viên</a>
+                        </li>
+                        <li class="active">
+                            <strong>Danh sách</strong>
+                        </li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-lg-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Danh sách</h2>
+                    <div class="actions panel_actions pull-right">
+                        <i class="box_toggle fa fa-chevron-down"></i>
+                        <a href=""><i class="box_setting fa fa-refresh"></i></a>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tên</th>
+                                        <th>Thông tin</th>
+                                        <th>Ngày tham gia</th>
+                                        <th>Tài khoản</th>
+                                        <th>Trạng thái</th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @if (Model != null && Model.Count() > 0)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.ID</td>
+                                                <td>@item.Name</td>
+                                                <td>
+                                                    @item.Address
+                                                    <br />
+                                                    @String.Format("{0:dd/MM/yyyy}", item.BirthDay)
+                                                    <br />
+                                                    @item.Phone
+                                                    <br />
+                                                    @if (item.Gender == 0)
+                                                    {
+                                                        @Html.Raw("Nữ")
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw("Nam")
+                                                    }
+                                                    <br />
+                                                    @item.Mail
+                                                </td>
+                                                <td>@String.Format("{0:dd/MM/yyyy}", item.DateJoin)</td>
+                                                <td>
+                                                    Tài khoản: @item.Account<br />
+                                                    Điểm: @item.AccumulatedPoints<br />
+                                                    Cấp độ: @item.Level
+                                                </td>
+                                                <td class="td_status">
+                                                    @if (!item.Status)
+                                                    {
+                                                        <p class="label-warning" style="text-align:center;color:white">Tạm khóa</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="label-success" style="text-align:center;color:white">Hoạt động</p>
+                                                    }
+                                                </td>
+                                                <td class="action-td">
+                                                    <div class="row">
+                                                        @if (item.Status)
+                                                        {
+                                                            <a id="r_@item.ID" onclick="lock('/Member/Lock/@item.ID','@item.ID','@item.Name-@item.Account')" class="btn btn-danger"><i class="fa fa-lock"></i></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a id="r_@item.ID" onclick="unlock('/Member/UnLock/@item.ID','@item.ID','@item.Name-@item.Account')" class="btn btn-danger"><i class="fa fa-unlock"></i></a>
+                                                        }
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                            <!-- ********************************************** -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</section>
+
+<script type="text/javascript">
+
+    function lock(action, id, name) {
+        $.confirm({
+            title: 'Thông báo!',
+            content: 'Xác nhận để khóa tài khoản này - [' + name + ']',
+            buttons: {
+                ok: function () {
+                    $.ajax({
+                        method: "GET",
+                        url: action,
+                    }).done(function (result) {
+                        if (result != '') {
+                            $.alert({
+                                title: 'Thông báo!',
+                                content: 'Xảy ra lỗi khi khóa tài khoản:' + result,
+                            });
+                        }
+                        else {
+                            var i = jQuery('#r_' + id).closest('tr');
+                            var td = i.find(".td_status")[0];
+                            var action_td = i.find(".action-td")[0];
+                            td.innerHTML = "<p class='label-warning' style='text-align:center; color:white'>Tạm khóa</p>";
+                            $.alert({
+                                title: 'Thông báo!',
+                                content: 'Đã khóa tài khoản thanh công!',
+                            });
+                            
+                        }
+                    })
+                },
+                cancel: function () {
+                    return;
+                }
+            }
+        });
+    }
+    function unlock(action, id, name) {
+        $.confirm({
+            title: 'Thông báo!',
+            content: 'Xác nhận để mở khóa tài khoản này - [' + name + ']',
+            buttons: {
+                ok: function () {
+                    $.ajax({
+                        method: "GET",
+                        url: action,
+                    }).done(function (result) {
+                        if (result != '') {
+                            $.alert({
+                                title: 'Thông báo!',
+                                content: 'Xảy ra lỗi khi mở khóa tài khoản:' + result,
+                            });
+                        }
+                        else {
+                            var i = jQuery('#r_' + id).closest('tr');
+                            var td = i.find(".td_status")[0];
+                            td.innerHTML = "<p class='label-success' style='text-align:center; color:white'>Hoạt động</p>";
+                            $.alert({
+                                title: 'Thông báo!',
+                                content: 'Đã mở khóa tài khoản thanh công!',
+                            });
+                        }
+                    })
+                },
+                cancel: function () {
+                    return;
+                }
+            }
+        });
+    }
+</script>
+

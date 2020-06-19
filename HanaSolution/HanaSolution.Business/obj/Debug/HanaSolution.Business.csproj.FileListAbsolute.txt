@@ -1,0 +1,16 @@
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\obj\Debug\HanaSolution.Business.csprojAssemblyReference.cache
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\obj\Debug\HanaSolution.Business.csproj.CoreCompileInputs.cache
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\HanaSolution.Business.dll
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\HanaSolution.Business.pdb
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\HanaSolution.Data.dll
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\HanaSolution.Helper.dll
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\HanaSolution.Services.dll
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\EntityFramework.dll
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\HanaSolution.Data.pdb
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\HanaSolution.Helper.pdb
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\HanaSolution.Services.pdb
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\HanaSolution.Services.dll.config
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\bin\Debug\EntityFramework.xml
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\obj\Debug\HanaSolution.Business.csproj.CopyComplete
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\obj\Debug\HanaSolution.Business.dll
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Business\obj\Debug\HanaSolution.Business.pdb

@@ -1,0 +1,43 @@
+﻿@model HanaSolution.Data.ViewModels.ResponseVendorLogin
+@if (Model != null && Model.ID != 0)
+{
+    <li class="profile">
+        <a href="#" data-toggle="dropdown" class="toggle">
+            <span>@Model.Name <i class="fa fa-angle-down"></i></span>
+        </a>
+        <ul class="dropdown-menu profile animated fadeIn">
+
+            <li>
+                <a href="/System/Profiles">
+                    <i class="fa fa-user"></i>
+                    Thông tin
+                </a>
+            </li>
+
+            <li class="last">
+                <a href="#" onclick="logOut()">
+                    <i class="fa fa-lock"></i>
+                    Đăng xuất
+                </a>
+            </li>
+        </ul>
+    </li>
+}
+<script>
+    function logOut() {
+        $.ajax({
+            url: "/System/Logout",
+            type: "POST",
+            traditional: true,
+            datatype: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                //alert(result);
+                location.href = "/";
+            },
+            error: function () {
+                return false;
+            }
+        });
+    }
+</script>

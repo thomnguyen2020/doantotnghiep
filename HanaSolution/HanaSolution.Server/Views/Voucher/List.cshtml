@@ -1,0 +1,75 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.VoucherView>
+@if (Model != null && Model.Count() > 0)
+{
+    <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Type</th>
+                <th>IsApplyOrder</th>
+                <th>Amount Reduced</th>
+                <th>Percent Reduced</th>
+                <th>Is Used</th>
+                <th>Date Used</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+
+
+            <tr>
+                <td>@item.Code</td>
+                <td>
+                    @if (item.Type == 0)
+                    {
+                        <p>Giảm theo số tiền</p>
+                    }
+                    else
+                    {
+                        <p>Giảm theo phần trăm</p>
+                    }
+                </td>
+                <td>
+                    @if (item.IsApplyOrder)
+                    {
+                        <p>Áp dụng cho hóa đơn</p>
+                    }
+                    else
+                    {
+                        <p>Áp dụng cho sản phẩm</p>
+                    }
+                </td>
+                <td>@item.AmountReduced</td>
+                <td>@item.PercentReduced</td>
+                <td>
+                    @if (item.IsUsed)
+                    {
+                        <p>Đã sử dụng</p>
+                    }
+                    else
+                    {
+                        <p>Chưa sử dụng</p>
+                    }
+                </td>
+                <td>
+                    @if (item.DateUsed != null && item.IsUsed)
+                    {
+                        @String.Format("{0:dd/MM/yyyy HH:mm:ss}", item.DateUsed)
+                    }
+                </td>
+
+            </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <a href="/Voucher/Add/@ViewBag.PromotionId" class="btn btn-social">Thêm Voucher</a>
+}

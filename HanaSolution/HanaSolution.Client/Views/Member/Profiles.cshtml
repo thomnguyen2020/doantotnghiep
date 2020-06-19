@@ -1,0 +1,72 @@
+﻿@model HanaSolution.Data.ViewModels.MemberView
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="page-content-wrapper">
+    <div class="container">
+        <!-- Profile Wrapper-->
+        @if (Model != null)
+        {
+            <div class="profile-wrapper-area py-3">
+                <!-- User Information-->
+                <div class="card user-info-card">
+                    <div class="card-body p-4 d-flex align-items-center">
+                        <div class="user-profile mr-3"><img src="/Content/img/bg-img/9.jpg" alt=""></div>
+                        <div class="user-info">
+                            <p class="mb-0 text-white">@@@Model.Account</p>
+                            <h5 class="mb-0">@Model.Name</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- User Meta Data-->
+                <div class="card user-data-card">
+                    <div class="card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style=" text-align: center;">
+                                        Điểm
+                                    </th>
+                                    <th style=" text-align: center;">
+                                        Cấp độ
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style=" text-align: center; font-size: 17px; font-weight: bold; color: #232323;">
+                                        @Model.AccumulatedPoints
+                                    </td>
+                                    <td style=" text-align: center; font-size: 17px; font-weight: bold; color: #232323;">@Model.Level</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="single-profile-data d-flex align-items-center justify-content-between">
+                            <div class="title d-flex align-items-center"><i class="lni-phone-handset"></i><span>SĐT</span></div>
+                            <div class="data-content">@Model.Phone</div>
+                        </div>
+                        <div class="single-profile-data d-flex align-items-center justify-content-between">
+                            <div class="title d-flex align-items-center"><i class="lni-envelope"></i><span>Email</span></div>
+                            <div class="data-content">@Model.Mail                             </div>
+                        </div>
+                        <div class="single-profile-data d-flex align-items-center justify-content-between">
+                            <div class="title d-flex align-items-center"><i class="lni-map-marker"></i><span>Địa chỉ</span></div>
+                            <div class="data-content">@Model.Address</div>
+                        </div>
+                        @Html.Action("ReceiptWidget", "Member")
+                        <div class="content-from">
+                            <div class="cf-heading">Danh sách đơn hàng</div>
+                            @Html.Action("OrderWidget", "Member")
+                        </div>
+                    </div>
+                </div>
+                <!-- Edit Profile-->
+                <div class="edit-profile-btn mt-3"><a class="btn btn-info w-100" href="/cap-nhat-tai-khoan.html"><i class="lni-pencil mr-2"></i>Cập nhật tài khoản</a></div>
+            </div>
+        }
+    </div>
+</div>

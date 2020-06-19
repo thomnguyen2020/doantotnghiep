@@ -1,0 +1,145 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.Cart>
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .checkcontainer {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        padding-bottom: 12px;
+        cursor: pointer;
+        font-size: 13px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        color: #212529;
+        font-weight: normal;
+        line-height: 20px;
+        border-bottom: 1px solid #ff5722;
+        margin-bottom: 10px;
+    }
+
+        .checkcontainer input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+            .checkcontainer input:checked ~ .radiobtn {
+                background-color: #b34141;
+            }
+
+    .radiobtn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        border: 2px solid #ff5722;
+        background: white;
+    }
+
+        .radiobtn:after {
+            top: 9px;
+            left: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+</style>
+
+
+<div class="page-content-wrapper container">
+    <div class="list-section">
+        
+        <div class="wrap-list-rc" id="shop_cart">
+            @if (ViewBag.ReceiptInfo != null && (List<HanaSolution.Data.ViewModels.MemberReceiptInfoView>)ViewBag.ReceiptInfo != null)
+            {
+                <div class="lrc-item cart-item" style="width:100%;height:auto">
+                    <h4 style="padding:15px 0 15px 0">
+                        Địa chỉ nhận hàng
+                    </h4>
+                    <select style=" padding: 10px; border: 1px solid #ff5722; border-radius: 20px;" id="mReceipt">
+                        @foreach (var item in (List<HanaSolution.Data.ViewModels.MemberReceiptInfoView>)ViewBag.ReceiptInfo)
+                        {
+                            <option value="@item.ID">@item.FullName - @item.Phone - @item.Address</option>
+                        }
+                    </select>
+                </div>
+            }
+            @if (Model != null && Model.Count() > 0)
+            {
+                <div class="lrc-item cart-item" style="width:100%;height:auto">
+                    <h4 style="padding:15px 0 15px 0">
+                        Tổng tiền: <b>@String.Format("{0:0,00} vnđ", Model.Sum(x => x.Total))</b>
+                    </h4>
+                </div>
+            }
+            <div class="lrc-item cart-item" style="width:100%;height:auto">
+                <h4 style="padding:15px 0 15px 0">
+                    Hình thức thanh toán
+                </h4>
+                <label class="checkcontainer">
+                    ATM Nội Địa
+                    <input type="radio" name="typePayment" checked="checked" value="0">
+                    <span class="radiobtn"></span>
+                </label>
+                <label class="checkcontainer">
+                    VISA, MASTER, JCB, AMEX, CUP
+                    <input type="radio" name="typePayment" value="1">
+                    <span class="radiobtn"></span>
+                </label>
+                <label class="checkcontainer">
+                    Thanh Toán Khi Nhận Hàng
+                    <input type="radio" name="typePayment" value="2">
+                    <span class="radiobtn"></span>
+                </label>
+            </div>
+        </div>
+        <div class="container" style="text-align:center;padding:10px;clear:both">
+            <a class="btn btn-danger" href="#" onclick="callPayment()">Thanh toán</a>
+        </div>
+    </div>
+</div>
+    <script>
+        function callPayment() {
+            $(".preloading").css("display", "block");
+            var type = $("input[name='typePayment']:checked").val();
+            var receipt = $("#mReceipt").val();
+            if (receipt == 0 || receipt == undefined) {
+                alert("Vui lòng thêm địa chỉ nhận hàng");
+                $(".preloading").css("display", "none");
+                return;
+            }
+            var data = JSON.stringify(new PaymentParam(type, receipt));
+            $.ajax({
+                url: "/Product/Payment",
+                type: "POST",
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data.Status == 1) {
+                        location.href = data.Uri;
+                    }
+                    else {
+                        location.href = "/";
+                    }
+                },
+                error: function () {
+
+                }
+            });
+            $(".preloading").css("display", "none");
+        }
+        function PaymentParam(type, receipt) {
+            var t = this;
+            t.ReceiptID = receipt;
+            t.TypePay = type;
+        }
+    </script>

@@ -1,0 +1,68 @@
+﻿@model HanaSolution.Data.ViewModels.ProductFeedbackView
+@{
+    ViewBag.Title = "FeedBackDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content" class=" ">
+    <section class="wrapper main-wrapper" style=''>
+        <div class="col-lg-12">
+            <section class="box nobox">
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="mail_content">
+                                <div class="row">
+                                    @if (Model != null)
+                                    {
+                                        <div class="col-md-12  col-sm-12 col-xs-12 mail_view_title">
+
+                                            <div class="pull-left">
+                                                <h3 class="">@Model.Member - @Model.Product</h3>
+                                            </div>
+
+                                            <div class='pull-right'>
+                                                <span class='msg_ts text-muted'>@String.Format("{0:dd/MM/yyyy hh:mm}", Model.Date)</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12  col-sm-12 col-xs-12 mail_view">
+
+                                            <p>@Model.Comment</p>
+                                            <br>
+                                        </div>
+                                        <div class="col-md-12  col-sm-12 col-xs-12 mail_view_attach">
+                                            <h3>
+                                                <i class="fa fa-paperclip icon-sm"></i> Trả lời
+                                            </h3><br>
+
+                                            @Html.Action("FeedbackReply", "Product", new { @id = Model.ID })
+                                        </div>
+                                    }
+
+
+                                    <div class="col-md-12  col-sm-12 col-xs-12 mail_view_reply">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <textarea class="form-control autogrow" cols="5" id="txtComment" placeholder="Reply or Forward this message" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 120px;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">
+                                            <button type="submit" onclick="ReplyAdd(@Model.ID)" class="btn btn-primary">Send</button>
+                                        </div>
+                                    </div>
+                                    <script src="~/Scripts/action.js"></script>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+    </section>
+</section>
+

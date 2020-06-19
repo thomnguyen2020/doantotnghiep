@@ -1,0 +1,14 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.MemberShoppingCart>
+@using HanaSolution.Helper.Core
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        var url = $"/san-pham/{item.Name.ToUrlFormat(true, true)}-{item.ID}.html";
+        <li class="right-menu-item"><a href="@url"><img src="@item.Avatar" style="width:50px;height:auto" /> @item.Name-(@item.Qty) x @String.Format("{0:0,00}", item.Total) </a></li>
+    }
+}
+else
+{
+    <li class="right-menu-item"> Rỗng </li>
+}

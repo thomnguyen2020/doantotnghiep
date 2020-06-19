@@ -1,0 +1,55 @@
+﻿@model HanaSolution.Data.ViewModels.ProductViewList
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+
+<div class="page-content-wrapper container">
+    @if (Model != null && Model.ID != 0)
+    {
+        <div class="blog-details-post-thumbnail" style="background-image: url('@Model.Avatar')">
+            <div class="container">
+                <div class="post-bookmark-wrap">
+                    <!-- Post Bookmark--><a class="post-bookmark" href="#"><i class="lni-bookmark"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-description pb-3">
+            <!-- Product Title & Meta Data-->
+            <div class="product-title-meta-data bg-white mb-3 py-3">
+                <div class="container">
+                    <h5 class="post-title">@Model.Title</h5>
+                    <p class="sale-price mb-0">@String.Format("{0:0,00} đ",Model.Price)</p>
+                </div>
+            </div>
+            <div class="cart-form-wrapper bg-white mb-3 py-3">
+                <div class="container">
+                    <div class="cart-form">
+                        <input class="form-control" type="number" id="txtQty" step="1" min="1" max="12" name="quantity" value="1">
+                        <button class="btn btn-warning" onclick="addShopingCart(@Model.ID,'@Model.Title',@Model.Price,'@Model.Avatar')" type="button">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+            <div class="post-content bg-white py-3 mb-3">
+                <div class="container">
+                    <p>@Html.Raw(Model.Content)</p>
+                </div>
+            </div>
+            <!-- All Comments-->
+        </div>
+    }
+</div>
+

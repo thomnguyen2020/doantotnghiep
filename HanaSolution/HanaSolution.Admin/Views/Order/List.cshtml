@@ -1,0 +1,242 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.OrderView>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content" class=" ">
+    <section class="wrapper main-wrapper" style=''>
+
+        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+            <div class="page-title">
+
+                <div class="pull-left">
+                    <h1 class="title">Đơn hàng</h1>
+                </div>
+
+                <div class="pull-right hidden-xs">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/"><i class="fa fa-home"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/Order/List">Đơn hàng</a>
+                        </li>
+                        <li class="active">
+                            <strong>Đơn hàng</strong>
+                        </li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="col-lg-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Danh sách</h2>
+                    <div class="actions panel_actions pull-right">
+                        <i class="box_toggle fa fa-chevron-down"></i>
+                        <a href=""><i class="box_setting fa fa-refresh"></i></a>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <table id="example" class="display table table-hover table-condensed" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Mã</th>
+                                        <th>Ngày</th>
+                                        <th>Hình thức TT</th>
+                                        <th>Trạng thái TT</th>
+                                        <th>Trạng thái</th>
+                                        <th>Người mua</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Giảm giá</th>
+                                        <th>Thành tiền</th>
+                                        <th>Ngày cập nhật</th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @if (Model != null && Model.Count() > 0)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+
+
+                                            <tr>
+                                                <td>@item.Code</td>
+                                                <td>@String.Format("{0:dd/MM/yyyy HH:mm}", item.Date)</td>
+                                                <td>
+                                                    @if (item.TypePayment == 0)
+                                                    {
+
+                                                        <p>Thanh toán Online quốc tế</p>
+                                                    }
+                                                    @if (item.TypePayment == 1)
+                                                    {
+                                                        <p>Thanh toán Online</p>
+                                                    }
+                                                    @if (item.TypePayment == 2)
+                                                    {
+                                                        <p>Thanh toán khi nhận hàng</p>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (item.StatusPayment == 1)
+                                                    {
+                                                        <p class="label-success">Đã thanh toán</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="label-danger">Chưa thanh toán</p>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (item.StatusOrder == 0)
+                                                    {
+                                                        <p class="label-warning">Đang đợi</p>
+                                                    }
+                                                    @if (item.StatusOrder == 1)
+                                                    {
+                                                        <p class="label-info">Đang thực hiện</p>
+                                                    }
+                                                    @if (item.StatusOrder == 2)
+                                                    {
+                                                        <p class="label-orange">Đang giao</p>
+                                                    }
+                                                    @if (item.StatusOrder == 3)
+                                                    {
+                                                        <p class="label-success">Đã giao</p>
+                                                    }
+                                                    @if (item.StatusOrder == 4 || item.StatusOrder == 5)
+                                                    {
+                                                        <p class="label-danger">Đã hủy</p>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @item.MemberName
+                                                </td>
+                                                <td>
+                                                    @String.Format("{0:0,00}", item.Total)
+                                                </td>
+                                                <td>
+                                                    @String.Format("{0:0,00}", item.Reduce)
+                                                </td>
+                                                <td>
+                                                    @String.Format("{0:0,00}", item.Amount)
+                                                </td>
+                                                <td>@String.Format("{0:dd/MM/yyyy HH:mm}", item.Date)</td>
+                                                <td class="action-td">
+                                                    <div class="row" style="display:block">
+                                                        @if (item.StatusOrder == 0)
+                                                        {
+                                                            <div class="btn-group bottom15 right15">
+                                                                <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                                                    <span class="caret"></span>
+                                                                    <span class="sr-only">Hành động</span>
+                                                                </button>
+                                                                <ul class="dropdown-menu" role="menu">
+                                                                    <li><a class="btn btn-warning" style="width:100%;margin:5px;text-align:left" onclick="updateStatus('/Order/Update?id=@item.ID&status=1',@item.ID,'@item.Code')" href="#"><i class="fa fa-edit"></i>&nbsp;Đang thực hiện</a></li>
+                                                                    <li><a class="btn btn-primary" style="width:100%;margin:5px;text-align:left" onclick="updateStatus('/Order/Update?id=@item.ID&status=2',@item.ID,'@item.Code')" href="#"><i class="fa fa-edit"></i>&nbsp;Đang giao</a></li>
+                                                                    <li><a class="btn btn-success" style="width:100%;margin:5px;text-align:left" onclick="updateStatus('/Order/Update?id=@item.ID&status=3',@item.ID,'@item.Code')" href="#"><i class="fa fa-edit"></i>&nbsp;Đã giao</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li> <a class="btn btn-danger" style="width:100%;margin:5px;text-align:left" onclick="updateStatus('/Order/Update?id=@item.ID&status=5',@item.ID,'@item.Code')" href="#"><i class="fa fa-remove"></i>&nbsp;Hủy</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        }
+                                                        @if (item.StatusOrder == 1)
+                                                        {
+                                                            <div class="btn-group bottom15 right15">
+                                                                <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                                                    <span class="caret"></span>
+                                                                    <span class="sr-only">Hành động</span>
+                                                                </button>
+                                                                <ul class="dropdown-menu" role="menu">
+
+                                                                    <li><a class="btn btn-primary" style="width:100%;margin:5px;text-align:left" onclick="updateStatus('/Order/Update?id=@item.ID&status=2',@item.ID,'@item.Code')" href="#"><i class="fa fa-edit"></i>&nbsp;Đang giao</a></li>
+                                                                    <li><a class="btn btn-success" style="width:100%;margin:5px;text-align:left" onclick="updateStatus('/Order/Update?id=@item.ID&status=3',@item.ID,'@item.Code')" href="#"><i class="fa fa-edit"></i>&nbsp;Đã giao</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li> <a class="btn btn-danger" style="width:100%;margin:5px;text-align:left" onclick="updateStatus('/Order/Update?id=@item.ID&status=5',@item.ID,'@item.Code')" href="#"><i class="fa fa-remove"></i>&nbsp;Hủy</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        }
+                                                        @if (item.StatusOrder == 2)
+                                                        {
+                                                            <div class="btn-group bottom15 right15">
+                                                                <button type="button" class="btn btn-primary">Cập nhật</button>
+                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                                                    <span class="caret"></span>
+                                                                    <span class="sr-only">Hành động</span>
+                                                                </button>
+                                                                <ul class="dropdown-menu" role="menu">
+                                                                    <li><a class="btn btn-success" style="width:100%;margin:5px;text-align:left" onclick="updateStatus('/Order/Update?id=@item.ID&status=3',@item.ID,'@item.Code')" href="#"><i class="fa fa-edit"></i>&nbsp;Đã giao</a></li>
+                                                                    <li class="divider"></li>
+                                                                    <li> <a class="btn btn-danger" style="width:100%;margin:5px;text-align:left" onclick="updateStatus('/Order/Update?id=@item.ID&status=5',@item.ID,'@item.Code')" href="#"><i class="fa fa-remove"></i>&nbsp;Hủy</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        }
+                                                        @if (item.StatusOrder == 3)
+                                                        {
+                                                            <p class="label-success">Đã giao</p>
+                                                        }
+                                                        @if (item.StatusOrder == 4 || item.StatusOrder == 5)
+                                                        {
+                                                            <p class="label-danger">Đã hủy</p>
+                                                        }
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                            <!-- ********************************************** -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</section>
+<script>
+    function updateStatus(action, id, name) {
+        $.confirm({
+            title: 'Thông báo!',
+            content: 'Xác nhận để cập nhật dữ liệu này - [' + name + ']',
+            buttons: {
+                ok: function () {
+                    $.ajax({
+                        method: "GET",
+                        url: action,
+                    }).done(function (result) {
+                        if (result != '') {
+                            $.alert({
+                                title: 'Thông báo!',
+                                content: 'Xảy ra lỗi khi cập nhật dữ liệu:' + result,
+                            });
+                        }
+                        else {
+                            $.alert({
+                                title: 'Thông báo!',
+                                content: 'Đã cập nhật dữ liệu thanh công!',
+                            });
+                            location.reload();
+                        }
+                    })
+                },
+                cancel: function () {
+                    return;
+                }
+            }
+        });
+    }
+</script>

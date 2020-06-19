@@ -1,0 +1,29 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.ProdcutCategoryView>
+@using HanaSolution.Helper.Core
+
+
+<div class="product-catagories-wrapper pt-3">
+    <div class="container">
+        <div class="section-heading">
+            <h6 class="ml-1">Danh Mục</h6>
+        </div>
+        <div class="product-catagory-wrap">
+            <div class="row">
+
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        var url = $"/danh-muc/{item.Title.ToUrlFormat(true, true)}-{item.ID}.html";
+                        
+                        <div class="col-4">
+                            <div class="card mb-3 catagory-card">
+                                <div class="card-body"><a href="@url"><img src="@item.Avatar" /><span>@item.Title</span></a></div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

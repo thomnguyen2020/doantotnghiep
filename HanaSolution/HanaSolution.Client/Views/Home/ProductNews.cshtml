@@ -1,0 +1,34 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.ProductViewList>
+@using HanaSolution.Helper.Core
+    <div class="flash-sale-wrapper pb-3">
+        <div class="container">
+            <div class="section-heading d-flex align-items-center justify-content-between">
+                <h6 class="ml-1">Mới nhất</h6><a class="btn btn-primary btn-sm" href="/san-pham.html">Xem thêm</a>
+            </div>
+            <!-- Flash Sale Slide-->
+            <div class="flash-sale-slide owl-carousel">
+                <!-- Single Flash Sale Card-->
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        var url = $"/san-pham/{item.Title.ToUrlFormat(true, true)}-{item.ID}.html";
+                        <div class="card flash-sale-card">
+                            <div class="card-body">
+                                <a href="@url">
+                                    <img src="@item.Avatar" alt=""><span class="product-title">@item.Title</span>
+                                    <p class="sale-price">@String.Format("{0:0,00}", item.Price)đ<span class="real-price">@String.Format("{0:0,00}", (item.Price + 50000))đ</span></p>
+                                    <!-- Progress Bar-->
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                }
+                <!-- Single Flash Sale Card-->
+
+            </div>
+        </div>
+    </div>

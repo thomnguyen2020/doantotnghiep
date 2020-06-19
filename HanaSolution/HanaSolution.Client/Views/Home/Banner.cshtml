@@ -1,0 +1,18 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.BannerActionView>
+@using HanaSolution.Helper.Core
+
+
+<div class="hero-slides owl-carousel">
+    <!-- Single Hero Slide-->
+    <!-- Single Hero Slide-->
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            
+            <div class="single-hero-slide" style="background-image: url('@item.Avatar')">
+                
+            </div>
+        }
+    }
+</div>

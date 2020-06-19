@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HANA SHOP</title>
+    <link rel="stylesheet" href="~/Content/css/style.css">
+</head>
+<body class="default">
+
+    <div class="preloader" id="preloader">
+        <div class="spinner-grow text-secondary" role="status">
+            <div class="sr-only">Loading...</div>
+        </div>
+    </div>
+    <!-- Header Area-->
+    <div class="header-area" id="headerArea">
+        <div class="container h-100 d-flex align-items-center justify-content-between">
+            <!-- Logo Wrapper-->
+            <div class="logo-wrapper"><a href="/"><img src="/Content/img/core-img/logo-small.png" alt=""></a></div>
+            <!-- Search Form-->
+            <div class="top-search-form">
+               
+            </div>
+            <!-- Navbar Toggler-->
+            <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler"><span></span><span></span><span></span></div>
+        </div>
+    </div>
+    <!-- Sidenav Black Overlay-->
+    <div class="sidenav-black-overlay"></div>
+    <div class="suha-sidenav-wrapper" id="sidenavWrapper">
+        <!-- Sidenav Profile-->
+        @Html.Action("HeaderWidget","Member")
+        <!-- Sidenav Nav-->
+        <ul class="sidenav-nav">
+            <li><a href="/"><i class="lni-home"></i>Trang chủ</a></li>
+            <li><a href="/san-pham.html"><i class="lni-empty-file"></i>Sản phẩm</a></li>
+            <li><a href="/tin-tuc.html"><i class="lni-files"></i>Tin tức</a></li>
+            <li><a href="/khuyen-mai.html"><i class="lni-list"></i>Khuyên mãi</a></li>
+            <li><a href="/gio-hang.html"><i class="lni-cart"></i>Giỏ hàng</a></li>
+        </ul>
+        <!-- Go Back Button-->
+        <div class="go-home-btn" id="goHomeBtn"><i class="lni-arrow-left"></i></div>
+    </div>
+    @RenderBody()
+    <!-- Side Nav Wrapper-->
+    <!-- Footer Nav-->
+    <div class="footer-nav-area" id="footerNav">
+        <div class="container h-100 px-0">
+            <div class="suha-footer-nav h-100">
+                <ul class="h-100 d-flex align-items-center justify-content-between">
+                    <li class="active"><a href="/"><i class="lni-home"></i>Trang chủ</a></li>
+                    <li><a href="/san-pham.html"><i class="lni-support"></i>Sản phẩm</a></li>
+                    <li><a href="/gio-hang.html"><i class="lni-cart"></i>Giỏ hàng</a></li>
+                    <li><a href="/tin-tuc.html"><i class="lni-heart"></i>Tin tức</a></li>
+                    <li><a href="/khuyen-mai.html"><i class="lni-notepad"></i>Khuyến mãi</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/Styles/js")
+
+</body>
+</html>

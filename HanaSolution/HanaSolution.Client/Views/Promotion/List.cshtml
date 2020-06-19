@@ -1,0 +1,50 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.PromotionAdminView>
+    @using HanaSolution.Helper.Core
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="page-content-wrapper container">
+        <div class="weekly-best-seller-area pt-3">
+            <div class="container">
+
+                <div class="row news-list">
+                    <!-- Single Weekly Product Card-->
+
+                    @if (Model != null && Model.Count() > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            var url = $"/khuyen-mai/{item.Title.ToUrlFormat(true, true)}-{item.ID}.html";
+
+                            <div class="col-12 col-md-6">
+                                <div class="card weekly-product-card mb-3">
+                                    <div class="card-body align-items-center">
+                                        <div class="product-thumbnail-side">
+                                            <span class="badge badge-success">News</span>
+                                            <a class="wishlist-btn" href="@url"><i class="lni-heart-filled"></i></a>
+                                            <a class="product-thumbnail d-block" href="@url"><img src="@item.Avatar" alt=""></a>
+                                        </div>
+                                        <div class="product-description">
+                                            <a class="product-title d-block" href="@url">@item.Title</a>
+                                            @if (item.Desc.Length > 50)
+                                            {
+                                                <p>@item.Desc.Substring(0, 50) [...]</p>
+                                            }
+                                            else
+                                            {
+                                                <p>@item.Desc</p>
+                                            }
+                                            <a class="btn btn-success btn-sm add2cart-notify" href="@url"><i class="mr-1 lni-eye"></i>Xem thêm</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+

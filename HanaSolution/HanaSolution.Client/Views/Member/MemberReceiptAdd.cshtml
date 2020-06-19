@@ -1,0 +1,50 @@
+﻿@model HanaSolution.Data.ViewModels.MemberReceiptInfoView
+@{
+    ViewBag.Title = "MemberReceiptAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content-wrapper container">
+    <div class="container">
+        <!-- Profile Wrapper-->
+        <div class="profile-wrapper-area py-3">
+            <!-- User Information-->
+            <div class="card user-info-card">
+                <div class="card-body p-4 d-flex align-items-center">
+
+                    <div class="user-info">
+                        <p class="mb-0 text-white">Địa chỉ nhận hàng</p>
+                    </div>
+                </div>
+            </div>
+            <!-- User Meta Data-->
+            <div class="card user-data-card">
+                <div class="card-body">
+                    @using (Html.BeginForm("MemberReceiptAdd", "Member", FormMethod.Post, new { @class = "form", @id = "setting" }))
+                    {
+                        @Html.TextBoxFor(model => model.ID, new { @class = "form-control", @placeholder = "demo", @title = "", @type = "hide", @style = "display:none" })
+                        @Html.TextBoxFor(model => model.Member, new { @class = "form-control", @placeholder = "demo", @title = "", @type = "hide", @style = "display:none" })
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni-user"></i><span>Họ tên</span></div>
+                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "demo", @title = "Họ tên" })
+                            @Html.ValidationMessageFor(model => model.FullName)
+                        </div>
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni-map-marker"></i><span>Địa chỉ</span></div>
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "demo", @title = "Địa chỉ" })
+                            @Html.ValidationMessageFor(model => model.Address)
+                        </div>
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni-phone-handset"></i><span>SĐT</span></div>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "demo", @title = "SĐT" })
+                            @Html.ValidationMessageFor(model => model.Phone)
+                        </div>
+
+                        <button class="btn btn-success w-100" type="submit">Cập nhật</button>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+﻿@model HanaSolution.Data.ViewModels.MemberActionView
+@{
+    ViewBag.Title = "InfoChange";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-content-wrapper container">
+    <div class="container">
+        <!-- Profile Wrapper-->
+        <div class="profile-wrapper-area py-3">
+            <!-- User Information-->
+            <div class="card user-info-card">
+                <div class="card-body p-4 d-flex align-items-center">
+                    <div class="user-profile mr-3">
+                        <img src="/Content/img/bg-img/9.jpg" alt="">
+                        <div class="change-user-thumb">
+                            <form>
+                                <input class="form-control-file" type="file">
+                                <button><i class="lni-pencil"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <p class="mb-0 text-white">@@@Model.Account</p>
+                        <h5 class="mb-0">@Model.Name</h5>
+                    </div>
+                </div>
+            </div>
+            <!-- User Meta Data-->
+            <div class="card user-data-card">
+                <div class="card-body">
+                    @using (Html.BeginForm("InfoChange", "Member", FormMethod.Post, new { @class = "form", @id = "setting" }))
+                    {
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni-user"></i><span>Họ tên</span></div>
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "demo", @title = "Họ tên" })
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni-map-marker"></i><span>Địa chỉ</span></div>
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "demo", @title = "Địa chỉ" })
+                            @Html.ValidationMessageFor(model => model.Address)
+                        </div>
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni-phone-handset"></i><span>SĐT</span></div>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "demo", @title = "SĐT" })
+                            @Html.ValidationMessageFor(model => model.Phone)
+                        </div>
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni-envelope"></i><span>Email </span></div>
+                            @Html.TextBoxFor(model => model.Mail, new { @class = "form-control", @placeholder = "demo", @title = "Email" })
+                            @Html.ValidationMessageFor(model => model.Mail)
+                        </div>
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni-user"></i><span>Giới tính</span></div>
+                            <select class="form-control" id="Gender" name="Gender">
+                                @if (Model.Gender == 0)
+                                {
+                                    <option value="-1">Không xác định</option>
+                                    <option value="1">Nam</option>
+                                    <option selected value="0">Nữ</option>
+                                }
+                                @if (Model.Gender == 1)
+                                {
+                                    <option value="-1">Không xác định</option>
+                                    <option selected value="1">Nam</option>
+                                    <option value="0">Nữ</option>
+                                }
+                                @if (Model.Gender == -1)
+                                {
+                                    <option selected value="-1">Không xác định</option>
+                                    <option value="1">Nam</option>
+                                    <option value="0">Nữ</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni-envelope"></i><span>Tài khoản </span></div>
+                            @Html.TextBoxFor(model => model.Account, new { @class = "form-control", @placeholder = "demo", @title = "Tài khoản" })
+                            @Html.ValidationMessageFor(model => model.Account)
+                            @Html.ValidationSummary(false, "ExistsAccountError", new { @class = "label-danger" })
+                        </div>
+                        <div class="form-group">
+                            <div class="title mb-2"><i class="lni-key"></i><span>Mật khẩu </span></div>
+                            @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @value = "demo", @title = "Mật khẩu", @type = "password", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                        <button class="btn btn-success w-100" type="submit">Cập nhật</button>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

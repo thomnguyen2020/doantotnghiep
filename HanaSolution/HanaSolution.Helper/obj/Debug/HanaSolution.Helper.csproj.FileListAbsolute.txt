@@ -1,0 +1,6 @@
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Helper\bin\Debug\HanaSolution.Helper.dll
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Helper\bin\Debug\HanaSolution.Helper.pdb
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Helper\obj\Debug\HanaSolution.Helper.csproj.CoreCompileInputs.cache
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Helper\obj\Debug\HanaSolution.Helper.dll
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Helper\obj\Debug\HanaSolution.Helper.pdb
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Helper\obj\Debug\HanaSolution.Helper.csprojAssemblyReference.cache

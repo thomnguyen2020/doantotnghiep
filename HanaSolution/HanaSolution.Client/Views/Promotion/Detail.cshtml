@@ -1,0 +1,33 @@
+﻿@model HanaSolution.Data.ViewModels.PromotionAdminView
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="page-content-wrapper container">
+        @if (Model != null && Model.ID != 0)
+        {
+            <div class="blog-details-post-thumbnail" style="background-image: url('@Model.Avatar')">
+                <div class="container">
+                    <div class="post-bookmark-wrap">
+                        <!-- Post Bookmark--><a class="post-bookmark" href="#"><i class="lni-bookmark"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-description pb-3">
+                <!-- Product Title & Meta Data-->
+                <div class="product-title-meta-data bg-white mb-3 py-3">
+                    <div class="container">
+                        <h5 class="post-title">@Model.Title</h5>
+                    </div>
+                </div>
+                <div class="post-content bg-white py-3 mb-3">
+                    <div class="container">
+                        <p>@Html.Raw(Model.Content)</p>
+                    </div>
+                </div>
+                <!-- All Comments-->
+            </div>
+        }
+    </div>
+

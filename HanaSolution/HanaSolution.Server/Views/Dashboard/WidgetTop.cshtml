@@ -1,0 +1,41 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.OrderView>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+
+            <div class="r1_graph1 db_box db_box_large">
+                @if (Model != null && Model.Count() > 0)
+                {
+                    <span class='bold'>@Model.Count()</span>
+                }
+                <span class='pull-right'><small>Số đơn hàng</small></span>
+                <div class="clearfix"></div>
+                @*<span class="db_dynamicbar">Loading...</span>*@
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+
+            <div class="r1_graph2 db_box db_box_large">
+                @if (Model != null && Model.Count() > 0)
+                {
+                    <span class='bold'>@String.Format("{0:0,00} vnđ", Model.Sum(x => x.Total))</span>
+                }
+                <span class='pull-right'><small>Doanh thu ước tính</small></span>
+                <div class="clearfix"></div>
+                @*<span class="db_linesparkline">Loading...</span>*@
+            </div>
+
+        </div>
+        <div class="col-md-4 hidden-sm col-sm-12 col-xs-12">
+
+            <div class="r1_graph1 db_box db_box_large">
+                @if (Model != null && Model.Count() > 0 && Model.Where(x=>x.StatusPayment==1)!=null)
+                {
+                    <span class='bold'>@String.Format("{0:0,00} vnđ", Model.Where(x => x.StatusPayment == 1).Sum(x => x.Total))</span>
+                }
+                <span class='pull-right'><small>Doanh thu thực tế</small></span>
+                <div class="clearfix"></div>
+                @*<span class="db_compositebar">Loading...</span>*@
+            </div>
+        </div>
+
+    </div>

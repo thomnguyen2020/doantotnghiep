@@ -1,0 +1,75 @@
+﻿@model HanaSolution.Data.ViewModels.VendorView
+@{
+    ViewBag.Title = "Profiles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content" class="">
+    <section class="wrapper main-wrapper" style="">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="page-title">
+
+                <div class="pull-left">
+                    <h1 class="title">Thông tin</h1>
+                </div>
+
+                <div class="pull-right hidden-xs">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/"><i class="fa fa-home"></i>Dashboard</a>
+                        </li>
+
+                        <li class="active">
+                            <strong>Thông tin</strong>
+                        </li>
+                    </ol>
+                </div>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+
+        <div class="col-lg-12">
+            <section class="box nobox">
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @if (Model != null && Model.ID != 0)
+                            {
+
+                                <div class="uprofile-name">
+                                    <h3>
+                                        <a href="#">@Model.Name</a>
+                                        <!-- Available statuses: online, idle, busy, away and offline -->
+                                        <span class="uprofile-status online"></span>
+                                    </h3>
+                                    <p class="uprofile-title">@Model.ContractCode</p>
+                                </div>
+                                <div class="uprofile-info">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fa fa-home"></i><b>Địa chỉ:</b> @Model.Address</li>
+                                        <li><i class="fa fa-user"></i><b>Tài khoản:</b> @Model.Account</li>
+                                        <li><i class="fa fa-suitcase"></i><b>Cấp độ:</b> @Model.Level</li>
+                                        <li><i class="fa fa-envelope"></i><b>Mail:</b> @Model.Mail</li>
+                                        <li><i class="fa fa-phone"></i><b>SĐT:</b> @Model.Phone</li>
+                                        <li><i class="fa fa-code"></i><b>MST:</b> @Model.TaxCode</li>
+                                    </ul>
+                                    <a href="/System/ChangePass?account=@Model.Account" class="btn btn-success">Đổi mật khẩu</a>
+                                </div>
+
+                            }
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+    </section>
+</section>
+

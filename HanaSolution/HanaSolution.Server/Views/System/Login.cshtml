@@ -1,0 +1,66 @@
+﻿@model HanaSolution.Data.ViewModels.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Phan Hưng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link rel="shortcut icon" href="~/Content/images/favicon.png" type="image/x-icon" />    <!-- Favicon -->
+    <link rel="apple-touch-icon-precomposed" href="~/Content/images/apple-touch-icon-57-precomposed.png">	<!-- For iPhone -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/images/apple-touch-icon-114-precomposed.png">    <!-- For iPhone 4 Retina display -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/images/apple-touch-icon-72-precomposed.png">    <!-- For iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/images/apple-touch-icon-144-precomposed.png">    <!-- For iPad Retina display -->
+    @Styles.Render("~/Styles/css")
+    @Scripts.Render("~/Styles/js")
+</head>
+<body class="login_page  pace-done">
+
+    <div class="login-wrapper">
+        <div id="login" class="login loginpage col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-0 col-xs-12">
+            <h1><a href="#" title="Login Page" tabindex="-1">Ultra Admin</a></h1>
+
+            @using (Html.BeginForm("Login", "System", FormMethod.Post, new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
+            {
+                <div name="loginform" id="loginform">
+                    <p>
+                        <label for="user_login">
+                            Tài khoản<br />
+                            @Html.TextBoxFor(model => model.Username, new { @class = "input", @placeholder = "Tài khoản", @size = "20" })
+                        </label>
+                    </p>
+                    <p>
+                        <label for="user_pass">
+                            Mật khẩu<br />
+                            @Html.TextBoxFor(model => model.Password, new { @class = "input", @placeholder = "Mật khẩu", @size = "20", @type = "password" })
+                        </label>
+                    </p>
+                    <p class="forgetmenot">
+                        <label class="icheck-label form-label" for="rememberme">
+                            <input name="rememberme" type="checkbox" id="inp_Remember" value="forever" class="skin-square-orange" checked>
+                            Ghi nhớ đăng nhập
+                        </label>
+                    </p>
+
+                    <p class="submit">
+                        <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-orange btn-block" value="Đăng nhập" />
+                    </p>
+                </div>
+            }
+
+            <p id="nav">
+                <a class="pull-left" href="#" title="Password Lost and Found">Quên mật khẩu?</a>
+                <a class="pull-right" href="ui-register.html" title="Sign Up">Đăng ký</a>
+            </p>
+        </div>
+    </div>
+    <script src="~/Scripts/action.js"></script>
+</body>
+</html>
+

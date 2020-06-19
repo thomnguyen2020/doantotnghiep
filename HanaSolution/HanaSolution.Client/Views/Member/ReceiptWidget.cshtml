@@ -1,0 +1,53 @@
+﻿@model IEnumerable<HanaSolution.Data.ViewModels.MemberReceiptInfoView>
+<div class="content-from">
+    <div class="cf-heading">Thông tin nhận hàng</div>
+    <div class="wrap-list-rc">
+
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <div class="lrc-item">
+                    <div class="lrc-content" style="padding-left:20px">
+                        <div class="lrc-desc">
+                            <div class="lrc-title">@item.FullName - @item.Phone</div>
+                            <div class="lrc-text">
+                                @item.Address
+                            </div>
+                            <div class="lrc-button">
+                                <div class="lrcb-right">
+                                    <p onclick="deleteReceipt(@item.ID,this)" style="cursor:pointer" class="label-danger"><i class="fa fa-trash"></i> Xóa địa chỉ</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="container" style="text-align:center;padding:10px;">
+            <a class="btn btn-danger" href="/dia-diem-giao-hang.html">Thêm địa chỉ giao hàng</a>
+        </div>
+
+
+    </div>
+</div>
+<script>
+    function deleteReceipt(id, elm) {
+        var data = '{"id":' + id + '}';
+        $.ajax({
+            url: "/Member/DeleteReceipt",
+            data: data,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (data == "1" || data == 1) {
+                    var root = $(elm).closest(".lrc-item");
+                    root.remove();
+                }
+            }
+        });
+    }
+</script>
