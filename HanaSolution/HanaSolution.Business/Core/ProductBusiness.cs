@@ -19,6 +19,7 @@ namespace HanaSolution.Business.Core
         IEnumerable<ProductViewList> GetAll();
         IEnumerable<ProductViewList> GetByCat(int id);
         ProductEditView GetEdit(long id);
+        IEnumerable<ProductViewList> GetSearchs(string key);
         ProductViewList GetDetail(long id);
         bool Add(ProductAddView entity);
         bool Edit(ProductEditView entity);
@@ -100,6 +101,11 @@ namespace HanaSolution.Business.Core
         public ProductViewList GetDetail(long id)
         {
             return _product.GetDetail(id);
+        }
+
+        public IEnumerable<ProductViewList> GetSearchs(string key)
+        {
+            return _product.GetSearchs(key);
         }
     }
 }

@@ -22,7 +22,10 @@
             <div class="logo-wrapper"><a href="/"><img src="/Content/img/core-img/logo-small.png" alt=""></a></div>
             <!-- Search Form-->
             <div class="top-search-form">
-               
+                <div class="form">
+                    <input class="form-control" id="ip_search" type="search" placeholder="Nhập tên sản phẩm">
+                    <button type="button" id="btn_search"><i class="fa fa-search"></i></button>
+                </div>
             </div>
             <!-- Navbar Toggler-->
             <div class="suha-navbar-toggler d-flex justify-content-between flex-wrap" id="suhaNavbarToggler"><span></span><span></span><span></span></div>
@@ -32,7 +35,7 @@
     <div class="sidenav-black-overlay"></div>
     <div class="suha-sidenav-wrapper" id="sidenavWrapper">
         <!-- Sidenav Profile-->
-        @Html.Action("HeaderWidget","Member")
+        @Html.Action("HeaderWidget", "Member")
         <!-- Sidenav Nav-->
         <ul class="sidenav-nav">
             <li><a href="/"><i class="lni-home"></i>Trang chủ</a></li>
@@ -56,12 +59,30 @@
                     <li><a href="/gio-hang.html"><i class="lni-cart"></i>Giỏ hàng</a></li>
                     <li><a href="/tin-tuc.html"><i class="lni-heart"></i>Tin tức</a></li>
                     <li><a href="/khuyen-mai.html"><i class="lni-notepad"></i>Khuyến mãi</a></li>
-                    
+
                 </ul>
             </div>
         </div>
     </div>
     @Scripts.Render("~/Styles/js")
-
+    <script>
+        $("#ip_search").keypress(function (event) {
+            var key = (event.keyCode ? event.keyCode : event.which);
+            if (key == '13') {
+                Search();
+            }
+        });
+        $("#btn_search").click(function () {
+            Search();
+        });
+        function Search() {
+            var keyword = "";
+            keyword = $("#ip_search").val();
+            if (keyword == '' || keyword == null || keyword == undefined) {
+                return;
+            }
+            location.href = "/tim-kiem.html?key=" + keyword;
+        }
+    </script>
 </body>
 </html>

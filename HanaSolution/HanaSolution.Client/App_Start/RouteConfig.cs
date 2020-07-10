@@ -48,6 +48,11 @@ namespace HanaSolution.Client
                 defaults: new { controller = "Product", action = "ListS", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+               name: "ProductSearch",
+               url: "tim-kiem.html",
+               defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional }
+           );
+            routes.MapRoute(
                 name: "ProductDetail",
                 url: "san-pham/{title}-{id}.html",
                 defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional }

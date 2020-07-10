@@ -57,6 +57,20 @@ namespace HanaSolution.Client.Controllers
                 return View();
             }
         }
+        public ActionResult Search(string key)
+        {
+            try
+            {
+                var result = _productBusiness.GetSearchs(key);
+
+                return View(result);
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
+        }
         public ActionResult Detail(long id)
         {
             try

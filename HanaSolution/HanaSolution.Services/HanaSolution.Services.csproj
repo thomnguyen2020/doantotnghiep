@@ -100,6 +100,10 @@
       <Project>{B205088B-84EE-4384-A455-4EF3E988A607}</Project>
       <Name>HanaSolution.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HanaSolution.Helper\HanaSolution.Helper.csproj">
+      <Project>{EC0C612E-718F-41FC-ABA5-5FAB924E0E69}</Project>
+      <Name>HanaSolution.Helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006121026122_start.resx">

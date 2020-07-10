@@ -16,3 +16,5 @@ D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Services\obj\Debug\HanaSol
 D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Services\obj\Debug\HanaSolution.Services.csproj.GenerateResource.cache
 D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Services\obj\Debug\HanaSolution.Services.Migrations.updateremovecontract.resources
 D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Services\obj\Debug\HanaSolution.Services.Migrations.updateproduct.resources
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Services\bin\Debug\HanaSolution.Helper.dll
+D:\JOB\WEB\DO.AN.THOM.DHTDM\HanaSolution\HanaSolution.Services\bin\Debug\HanaSolution.Helper.pdb

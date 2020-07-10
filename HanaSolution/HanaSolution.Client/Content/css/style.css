@@ -633,10 +633,10 @@ textarea:invalid {
 .top-search-form {
   position: relative;
   z-index: 1; }
-  .top-search-form form {
+  .top-search-form .form {
     position: relative;
     z-index: 1; }
-    .top-search-form form .form-control {
+    .top-search-form .form .form-control {
       max-width: 190px;
       background-color: #ffffff;
       height: 32px;
@@ -646,22 +646,22 @@ textarea:invalid {
       border: 1px solid #ebebeb;
       color: #747794; }
       @media only screen and (min-width: 480px) and (max-width: 767px) {
-        .top-search-form form .form-control {
+        .top-search-form .form .form-control {
           max-width: 240px;
           width: 240px; } }
       @media only screen and (min-width: 768px) and (max-width: 991px) {
-        .top-search-form form .form-control {
+        .top-search-form .form .form-control {
           max-width: 280px;
           width: 280px; } }
       @media only screen and (min-width: 992px) and (max-width: 1199px) {
-        .top-search-form form .form-control {
+        .top-search-form .form .form-control {
           max-width: 280px;
           width: 280px; } }
       @media only screen and (min-width: 1200px) {
-        .top-search-form form .form-control {
+        .top-search-form .form .form-control {
           max-width: 350px;
           width: 350px; } }
-    .top-search-form form button {
+    .top-search-form .form button {
       background-color: transparent;
       position: absolute;
       top: 1px;
@@ -671,7 +671,7 @@ textarea:invalid {
       border: 0;
       z-index: 10;
       color: #747794; }
-      .top-search-form form button:focus {
+      .top-search-form .form button:focus {
         outline: none; }
 
 .suha-navbar-toggler {
@@ -2922,7 +2922,7 @@ box-shadow: 0px 0px 10px 0px #333;
   [data-theme="dark"] .suha-footer-nav ul li a:hover,
   [data-theme="dark"] .suha-footer-nav ul li a:focus {
     color: #ffaf00; }
-  [data-theme="dark"] .top-search-form form .form-control {
+  [data-theme="dark"] .top-search-form .form .form-control {
     background-color: transparent;
     border-color: rgba(255, 255, 255, 0.125); }
   [data-theme="dark"] .btn-warning:hover, [data-theme="dark"] .btn-warning:focus {

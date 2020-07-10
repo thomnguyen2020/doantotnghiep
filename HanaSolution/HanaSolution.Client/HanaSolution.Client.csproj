@@ -353,6 +353,7 @@
     <Content Include="Views\Member\OrderWidget.cshtml" />
     <Content Include="Views\Home\ProductNews.cshtml" />
     <Content Include="Views\Product\ListS.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HanaSolution.Business\HanaSolution.Business.csproj">

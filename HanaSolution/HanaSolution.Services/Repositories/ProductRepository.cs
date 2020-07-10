@@ -1,5 +1,6 @@
 ﻿using HanaSolution.Data.Models;
 using HanaSolution.Data.ViewModels;
+using HanaSolution.Helper.Core;
 using HanaSolution.Services.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace HanaSolution.Services.Repositories
     {
         IEnumerable<ProductViewList> GetAlls(int id);
         IEnumerable<ProductViewList> GetAlls();
+        IEnumerable<ProductViewList> GetSearchs(string key);
         IEnumerable<ProductViewList> GetByCat(int id);
         ProductViewList GetDetail(long id);
         bool Add(ProductAddView model);
@@ -298,6 +300,56 @@ namespace HanaSolution.Services.Repositories
                     return null;
             }
             catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+        public IEnumerable<ProductViewList> GetSearchs(string key)
+        {
+            try
+            {
+                List<ProductViewList> viewLists = new List<ProductViewList>();
+
+                var _lst = from p in DbContext.Products
+                           from c in DbContext.ProductCategorys
+                           from v in DbContext.Staffs
+                           where p.Staff == v.ID
+                           && p.Category == c.ID
+                           && p.Status == true
+                           select new
+                           {
+                               ID = p.ID,
+                               Title = p.Title,
+                               Desc = p.Desc,
+                               Avatar = p.Avatar,
+                               Category = c.Title,
+                               Price = p.Price,
+                               Staff = v.Name,
+                               Rate = p.Rate
+                           };
+                var _temp = _lst.ToList();
+                key = key.ToNoSings(true).ToLowerCase();
+                if (_lst != null && _lst.Count() > 0 && _temp.Where(x => x.Title.ToNoSings(true).ToLowerCase().Contains(key)).Count() > 0)
+                {
+                    foreach (var item in _temp.Where(x => x.Title.ToNoSings(true).ToLowerCase().Contains(key)))
+                    {
+                        ProductViewList viewList = new ProductViewList();
+                        viewList.Avatar = item.Avatar;
+                        viewList.Category = item.Category;
+                        viewList.Desc = item.Desc;
+                        viewList.ID = item.ID;
+                        viewList.Price = item.Price;
+                        viewList.Title = item.Title;
+                        viewList.Staff = item.Staff;
+                        viewList.Rate = item.Rate;
+                        viewLists.Add(viewList);
+                    }
+                }
+                return viewLists;
+            }
+            catch (System.Exception)
             {
 
                 return null;
